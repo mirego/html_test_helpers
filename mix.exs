@@ -19,7 +19,13 @@ defmodule HtmlTestHelpers.MixProject do
 
   defp deps do
     [
-      {:floki, "~> 0.24.0"}
+      # HTML
+      {:floki, "~> 0.24.0"},
+
+      # Linting
+      {:credo, "~> 1.1", only: [:dev, :test], override: true},
+      {:credo_envvar, "~> 0.1", only: [:dev, :test], runtime: false},
+      {:credo_naming, "~> 0.4", only: [:dev, :test], runtime: false},
     ]
   end
 end
