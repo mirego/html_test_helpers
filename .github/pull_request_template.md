@@ -1,22 +1,18 @@
-## 📖 Description et motivation
+## 📖 Description and reason
 
-<!-- Quels sont les changements et pourquoi sont-ils nécessaires? -->
+<!-- What are the changes and why are they necessary? -->
 
-## 👷 Travail effectué
+## 👷 Work done
 
-#### Tâches
+#### Tasks
 
-- [x] Tâche 1
-- [ ] Tâche 2
+- [x] Task 1
+- [ ] Task 2
 
-#### Notes additionnelles
+#### Additional notes
 
-<!-- Quels sont sujets dont vous aimeriez discuter ou qui nécessitent un regard plus attentif? -->
+<!-- What are topics you would like to discuss or require a closer look? -->
 
-## 📓 Références
+## 🎉 Result
 
-- [HABS-0000](https://mirego.atlassian.net/browse/HABS-0000)
-
-## 🎉 Résultat
-
-<!-- Quel est le résultat du travail? Mettre des screenshots si nécessaire. -->
+<!-- What is the result? Include screenshots if necessary. -->
