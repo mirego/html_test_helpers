@@ -1,12 +1,9 @@
 defmodule HtmlTestHelpers do
   @moduledoc """
-  assert functions to validate HTML response :
+  Functions helpers for unit testing.
+  Validate HTML tag identified by data-testid attributes
 
-  - `assert_html_text/2`
-  - `assert_html_attribute/3`
-  - `assert_html_attribute/4`
-
-  ## Example
+  ## Examples
 
   Assuming that you have the following HTML:
 
@@ -15,13 +12,13 @@ defmodule HtmlTestHelpers do
     <html>
     <body>
       <section id="content">
-        <p data-testid="test-text-id">Habs</p>
+        <p data-testid="paragraph-id">First paragraph content</p>
         <ul>
           <li data-testid="test-li-id-1" class="li-class-1"> First line </li>
           <li data-testid="test-li-id-2" class="li-class-2"> Second line </li>
         </ul>
-        <a data-testid="test-link-id" class="my-class my-other-class" href="/expected/link">Details</a>
-        <span class="footer small" data-testid="test-footer-id">2020</span>
+        <a data-testid="test-link-id" class="my-link-class my-other-class" href="/expected/link">Details</a>
+        <span data-testid="test-footer-id" class="footer small">2020</span>
       </section>
     </body>
     </html>
@@ -30,24 +27,69 @@ defmodule HtmlTestHelpers do
   You can validate your expected response as follow :
 
   ```elixir
-      conn
-      |> html_response(200)
-      |> assert_html_text("test--text-id", "Habs")
-      |> assert_html_attribute("test-link-id", "href", "/expected/link")
-      |> assert_html_attribute("test-link-id", "class", :contains, "my-class")
-      |> assert_html_attribute("test-footer-testid", "class", :equals, "footer my-class")
+  raw_html
+  |> assert_html_text("paragraph-id", "First paragraph content")
+  |> assert_html_attribute("test-link-id", "href", "/expected/link")
+  |> assert_html_attribute("test-link-id", "class", :contains, "my-link-class")
+  |> assert_html_attribute("test-footer-testid", "class", :equals, "footer small")
+  # =>
+  # [{"html", [],
+  #   [
+  #     {"body", [],
+  #     [
+  #       {"section", [{"id", "content"}],
+  #         [
+  #           {"p", [{"data-testid", "paragraph-id"}],
+  #           ["First paragraph content"]},
+  #           {"ul", [],
+  #           [
+  #             {"li",
+  #               [{"data-testid", "test-li-id-1"}, {"class", "li-class-1"}],
+  #               [" First line "]},
+  #             {"li",
+  #               [{"data-testid", "test-li-id-2"}, {"class", "li-class-2"}],
+  #               [" Second line "]}
+  #           ]},
+  #           {"a",
+  #           [
+  #             {"data-testid", "test-link-id"},
+  #             {"class", "my-link-class my-other-class"},
+  #             {"href", "/expected/link"}
+  #           ], ["Details"]},
+  #           {"span",
+  #           [{"data-testid", "test-footer-id"}, {"class", "footer small"}],
+  #           ["2020"]}
+  #         ]}
+  #     ]}
+  #   ]}
+  # ]}
   ```
 
-  or
+  if there is an error :
 
   ```elixir
-      html_texts(html_response(conn, 200), "test-li-id")
-      # =>
-      #  ["First line", "Second line]
+  assert_html_text(raw_html, "paragraph-id", "First paragraph content")
+  # =>
+  # ** (ExUnit.AssertionError)
 
-      html_attributes(html_response(conn, 200), "test-li-id", "class")
-      # =>
-      #  ["li-class-1", "li-class-2"]
+  # Value identified by data-testid[paragraph-id] is not as expected.
+
+  # left:  "First paragraph content"
+  # right: "wrong content"
+
+  #     (html_test_helpers) lib/html_test_helpers.ex:106: HtmlTestHelpers.assert_html_text/3
+  ```
+
+  Also if you just need the value identified by `data-testid` attribute you can use :
+
+  ```elixir
+  html_texts(raw_html, "test-li-id")
+  # =>
+  # ["First line", "Second line]
+
+  html_attributes(raw_html, "test-li-id", "class")
+  # =>
+  # ["li-class-1", "li-class-2"]
   ```
   """
 
