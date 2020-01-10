@@ -1,4 +1,4 @@
-[![Actions Status](https://github.com/mirego/html-test-helpers/workflows/CI/badge.svg?branch=master)](https://github.com/mirego/html-test-helpers/actions)
+[![Actions Status](https://github.com/mirego/html_test_helpers/workflows/CI/badge.svg?branch%3Amaster)](https://github.com/mirego/html_test_helpers/actions)
 
 # HtmlTestHelpers
 
