@@ -1,6 +1,6 @@
 [![Actions Status](https://github.com/mirego/html_test_helpers/workflows/CI/badge.svg?branch%3Amaster)](https://github.com/mirego/html_test_helpers/actions)
 
-# HtmlTestHelpers
+# HTMLTestHelpers
 
 Functions helpers for unit testing.
 Validate HTML tag identified by data-testid attributes
@@ -79,7 +79,7 @@ assert_html_text(raw_html, "paragraph-id", "First paragraph content")
 # left:  "First paragraph content"
 # right: "wrong content"
 
-#     (html_test_helpers) lib/html_test_helpers.ex:106: HtmlTestHelpers.assert_html_text/3
+#     (html_test_helpers) lib/html_test_helpers.ex:106: HTMLTestHelpers.assert_html_text/3
 ```
 
 Also if you just need the value identified by `data-testid` attribute you can use :
