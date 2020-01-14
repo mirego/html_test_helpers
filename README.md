@@ -101,7 +101,7 @@ The package can be installed by adding `html_test_helpers` to your list of depen
 ```elixir
 def deps do
   [
-    {:html_test_helpers, github: "mirego/html_test_helpers", tag: "v0.1.0", only: :test}
+    {:html_test_helpers, github: "mirego/html_test_helpers", tag: "v0.1.1", only: :test}
   ]
 end
 ```
