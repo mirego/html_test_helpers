@@ -1,8 +1,8 @@
-defmodule HtmlTestHelpersTest do
+defmodule HTMLTestHelpersTest do
   use ExUnit.Case, async: true
 
   alias ExUnit.AssertionError
-  import HtmlTestHelpers
+  import HTMLTestHelpers
 
   setup do
     raw_html = """

@@ -1,4 +1,4 @@
-defmodule HtmlTestHelpers do
+defmodule HTMLTestHelpers do
   @moduledoc """
   Functions helpers for unit testing.
   Validate HTML tag identified by data-testid attributes
@@ -77,7 +77,7 @@ defmodule HtmlTestHelpers do
   # left:  "First paragraph content"
   # right: "wrong content"
 
-  #     (html_test_helpers) lib/html_test_helpers.ex:106: HtmlTestHelpers.assert_html_text/3
+  #     (html_test_helpers) lib/html_test_helpers.ex:106: HTMLTestHelpers.assert_html_text/3
   ```
 
   Also if you just need the value identified by `data-testid` attribute you can use :

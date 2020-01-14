@@ -1,4 +1,4 @@
-defmodule HtmlTestHelpers.MixProject do
+defmodule HTMLTestHelpers.MixProject do
   use Mix.Project
 
   def project do
