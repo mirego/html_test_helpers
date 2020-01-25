@@ -1,9 +1,9 @@
 <p align="center">
   <img src="https://user-images.githubusercontent.com/11348/73123814-10d59880-3f62-11ea-9fac-4de5a4debd2f.png" width="600" />
   <br /><br />
-  <code>HTMLTestHelpers</code> provides function helpers for unit testing allowing easy assertions for HTML elements data queried by `data-testid` attribute.
+  <code>HTMLTestHelpers</code> provides function helpers for unit testing allowing easy assertions for<br /> HTML elements data queried by <code>data-testid</code> attribute.
   <br /><br />
-  <a href="https://github.com/mirego/html_test_helpers/actions"><img src="https://github.com/mirego/html_test_helper/workflows/CI/badge.svg?branch%3Amaster" /></a>
+  <a href="https://github.com/mirego/html_test_helpers/actions"><img src="https://github.com/mirego/html_test_helper/workflows/CI/badge.svg?branch=master" /></a>
 </p>
 
 ## Installation
