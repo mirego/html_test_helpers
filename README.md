@@ -1,9 +1,20 @@
-[![Actions Status](https://github.com/mirego/html_test_helpers/workflows/CI/badge.svg?branch%3Amaster)](https://github.com/mirego/html_test_helpers/actions)
+[![](https://github.com/mirego/html_test_helpers/workflows/CI/badge.svg?branch%3Amaster)](https://github.com/mirego/html_test_helpers/actions)
 
 # HTMLTestHelpers
 
-Functions helpers for unit testing.
-Validate HTML tag identified by data-testid attributes
+Functions helpers for unit testing. Assert HTML elements data queried by `data-testid` attribute.
+
+## Installation
+
+The package can be installed by adding `html_test_helpers` to your list of dependencies in `mix.exs`:
+
+```elixir
+def deps do
+  [
+    {:html_test_helpers, github: "mirego/html_test_helpers", tag: "v0.1.1", only: :test}
+  ]
+end
+```
 
 ## Usage
 
@@ -19,7 +30,12 @@ Assuming that you have the following HTML:
         <li data-testid="test-li-id-1" class="li-class-1">First line</li>
         <li data-testid="test-li-id-2" class="li-class-2">Second line</li>
       </ul>
-      <a data-testid="test-link-id" class="my-link-class my-other-class" href="/expected/link">Details</a>
+      <a
+        data-testid="test-link-id"
+        class="my-link-class my-other-class"
+        href="/expected/link"
+        >Details</a
+      >
       <span data-testid="test-footer-id" class="footer small">2020</span>
     </section>
   </body>
@@ -92,18 +108,6 @@ html_texts(raw_html, "test-li-id")
 html_attributes(raw_html, "test-li-id", "class")
 # =>
 # ["li-class-1", "li-class-2"]
-```
-
-## Installation
-
-The package can be installed by adding `html_test_helpers` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:html_test_helpers, github: "mirego/html_test_helpers", tag: "v0.1.1", only: :test}
-  ]
-end
 ```
 
 ## Contributors
