@@ -27,7 +27,8 @@ defmodule HTMLTestHelpers.MixProject do
 
       # Linting
       {:credo, "~> 1.1", only: [:dev, :test], override: true},
-      {:credo_naming, "~> 0.4", only: [:dev, :test], runtime: false}
+      {:credo_naming, "~> 0.4", only: [:dev, :test], runtime: false},
+      {:ex_doc, "~> 0.21", only: :dev, runtime: false}
     ]
   end
 
