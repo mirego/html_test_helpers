@@ -38,8 +38,7 @@ defmodule HTMLTestHelpers.MixProject do
 
   defp package do
     [
-      organization: "mirego",
-      licences: ["BSD-3-Clause"],
+      licenses: ["BSD-3-Clause"],
       links: %{"GitHub" => "https://github.com/mirego/html_test_helpers"}
     ]
   end
