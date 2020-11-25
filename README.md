@@ -4,6 +4,7 @@
   <code>HTMLTestHelpers</code> provides function helpers for unit testing allowing easy assertions for<br /> HTML elements data queried by <code>data-testid</code> attribute.
   <br /><br />
   <a href="https://github.com/mirego/html_test_helpers/actions"><img src="https://github.com/mirego/html_test_helpers/workflows/CI/badge.svg?branch=master" /></a>
+  <a href="https://hex.pm/packages/html_test_helpers"><img src="https://img.shields.io/hexpm/v/html_test_helpers.svg" /></a>
 </p>
 
 ## Installation
