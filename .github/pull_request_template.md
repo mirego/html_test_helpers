@@ -16,3 +16,7 @@
 ## 🎉 Result
 
 <!-- What is the result? Include screenshots if necessary. -->
+
+## 🦀 Dispatch
+
+`#dispatch/elixir`
