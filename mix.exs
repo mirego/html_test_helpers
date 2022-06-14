@@ -5,7 +5,7 @@ defmodule HTMLTestHelpers.MixProject do
     [
       app: :html_test_helpers,
       version: "0.1.1",
-      elixir: "~> 1.9",
+      elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       description: description(),
@@ -23,12 +23,12 @@ defmodule HTMLTestHelpers.MixProject do
   defp deps do
     [
       # HTML
-      {:floki, "~> 0.24.0"},
+      {:floki, "~> 0.32.1"},
 
       # Linting
-      {:credo, "~> 1.1", only: [:dev, :test], override: true},
-      {:credo_naming, "~> 0.4", only: [:dev, :test], runtime: false},
-      {:ex_doc, "~> 0.21", only: :dev, runtime: false}
+      {:credo, "~> 1.6", only: [:dev, :test], override: true},
+      {:credo_naming, "~> 2.0", only: [:dev, :test], runtime: false},
+      {:ex_doc, "~> 0.28.4", only: :dev, runtime: false}
     ]
   end
 
