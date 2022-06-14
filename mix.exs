@@ -5,7 +5,7 @@ defmodule HTMLTestHelpers.MixProject do
     [
       app: :html_test_helpers,
       version: "0.1.1",
-      elixir: "~> 1.13",
+      elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       description: description(),
