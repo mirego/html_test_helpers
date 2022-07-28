@@ -188,39 +188,39 @@ defmodule HTMLTestHelpersTest do
     end
   end
 
-  describe "assert_html_element_exist" do
+  describe "assert_html_element_exists" do
     test "with raw html and test_id id is found", %{raw_html: raw_html} do
-      assert_html_element_exist(raw_html, "headline-1")
+      assert_html_element_exists(raw_html, "headline-1")
     end
 
     test "with raw html and test_id is not found", %{raw_html: raw_html} do
       assert_raise AssertionError,
                    ~r/Expected an element with data-testid=`headline-5` but none was found/,
                    fn ->
-                     assert_html_element_exist(raw_html, "headline-5")
+                     assert_html_element_exists(raw_html, "headline-5")
                    end
     end
 
     test "with html structure and id is found", %{html_structure: html_structure} do
-      assert_html_element_exist(html_structure, "headline-1")
+      assert_html_element_exists(html_structure, "headline-1")
     end
   end
 
-  describe "assert_html_element_does_not_exist" do
+  describe "refute_html_element_exists" do
     test "with raw html and test_id id is found", %{raw_html: raw_html} do
       assert_raise AssertionError,
                    ~r/Expected no element with data-testid=`headline-1` but one was found/,
                    fn ->
-                     assert_html_element_does_not_exist(raw_html, "headline-1")
+                    refute_html_element_exists(raw_html, "headline-1")
                    end
     end
 
     test "with raw html and test_id is not found", %{raw_html: raw_html} do
-      assert_html_element_does_not_exist(raw_html, "headline-5")
+      refute_html_element_exists(raw_html, "headline-5")
     end
 
     test "with html structure and id is not found", %{html_structure: html_structure} do
-      assert_html_element_does_not_exist(html_structure, "headline-5")
+      refute_html_element_exists(html_structure, "headline-5")
     end
   end
 end

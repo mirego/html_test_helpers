@@ -32,8 +32,8 @@ defmodule HTMLTestHelpers do
   |> assert_html_attribute("test-link-id", "href", "/expected/link")
   |> assert_html_attribute("test-link-id", "class", :contains, "my-link-class")
   |> assert_html_attribute("test-footer-testid", "class", :equals, "footer small")
-  |> assert_html_element_exist("test-li-id-1")
-  |> assert_html_element_does_not_exist("test-li-id-5")
+  |> assert_html_element_exists("test-li-id-1")
+  |> refute_html_element_exists("test-li-id-5")
   # =>
   # [{"html", [],
   #   [
@@ -213,8 +213,8 @@ defmodule HTMLTestHelpers do
     html
   end
 
-  @spec assert_html_element_exist(html(), String.t()) :: html_document()
-  def assert_html_element_exist(html, data_test_id) when is_list(html) do
+  @spec assert_html_element_exists(html(), String.t()) :: html_document()
+  def assert_html_element_exists(html, data_test_id) when is_list(html) do
     element = Floki.find(html, "[data-testid=#{data_test_id}]")
 
     if Enum.empty?(element) do
@@ -228,14 +228,14 @@ defmodule HTMLTestHelpers do
     html
   end
 
-  def assert_html_element_exist(raw_html, data_test_id) do
+  def assert_html_element_exists(raw_html, data_test_id) do
     {:ok, document} = Floki.parse_document(raw_html)
 
-    assert_html_element_exist(document, data_test_id)
+    assert_html_element_exists(document, data_test_id)
   end
 
-  @spec assert_html_element_does_not_exist(html(), String.t()) :: html_document()
-  def assert_html_element_does_not_exist(html, data_test_id) when is_list(html) do
+  @spec refute_html_element_exists(html(), String.t()) :: html_document()
+  def refute_html_element_exists(html, data_test_id) when is_list(html) do
     element = Floki.find(html, "[data-testid=#{data_test_id}]")
 
     unless Enum.empty?(element) do
@@ -249,10 +249,10 @@ defmodule HTMLTestHelpers do
     html
   end
 
-  def assert_html_element_does_not_exist(raw_html, data_test_id) do
+  def refute_html_element_exists(raw_html, data_test_id) do
     {:ok, document} = Floki.parse_document(raw_html)
 
-    assert_html_element_does_not_exist(document, data_test_id)
+    refute_html_element_exists(document, data_test_id)
   end
 
   defp check_values_valid?(:contains, attribute_values, expected_attribute_values) do
