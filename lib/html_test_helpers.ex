@@ -32,6 +32,8 @@ defmodule HTMLTestHelpers do
   |> assert_html_attribute("test-link-id", "href", "/expected/link")
   |> assert_html_attribute("test-link-id", "class", :contains, "my-link-class")
   |> assert_html_attribute("test-footer-testid", "class", :equals, "footer small")
+  |> assert_html_element_exists("test-li-id-1")
+  |> refute_html_element_exists("test-li-id-5")
   # =>
   # [{"html", [],
   #   [
@@ -209,6 +211,48 @@ defmodule HTMLTestHelpers do
     end
 
     html
+  end
+
+  @spec assert_html_element_exists(html(), String.t()) :: html_document()
+  def assert_html_element_exists(html, data_test_id) when is_list(html) do
+    element = Floki.find(html, "[data-testid=#{data_test_id}]")
+
+    if Enum.empty?(element) do
+      error_args = [
+        message: "Expected an element with data-testid=`#{data_test_id}` but none was found\n"
+      ]
+
+      raise ExUnit.AssertionError, error_args
+    end
+
+    html
+  end
+
+  def assert_html_element_exists(raw_html, data_test_id) do
+    {:ok, document} = Floki.parse_document(raw_html)
+
+    assert_html_element_exists(document, data_test_id)
+  end
+
+  @spec refute_html_element_exists(html(), String.t()) :: html_document()
+  def refute_html_element_exists(html, data_test_id) when is_list(html) do
+    element = Floki.find(html, "[data-testid=#{data_test_id}]")
+
+    unless Enum.empty?(element) do
+      error_args = [
+        message: "Expected no element with data-testid=`#{data_test_id}` but one was found\n"
+      ]
+
+      raise ExUnit.AssertionError, error_args
+    end
+
+    html
+  end
+
+  def refute_html_element_exists(raw_html, data_test_id) do
+    {:ok, document} = Floki.parse_document(raw_html)
+
+    refute_html_element_exists(document, data_test_id)
   end
 
   defp check_values_valid?(:contains, attribute_values, expected_attribute_values) do
