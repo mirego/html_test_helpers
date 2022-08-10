@@ -11,6 +11,7 @@ defmodule HTMLTestHelpersTest do
       <body>
         <section id="content">
           <h1 data-testid="h1-id" class="title">Title</h1>
+          <h2 data-testid="h2-id" class="subtitle">\nSubtitle\n</h2>
           <p data-testid="headline-1" class="span-headline-1 first-span">First paragraph</p>
           <p data-testid="headline-2" class="span-headline-2">Second paragraph</p>
         </section>
@@ -26,6 +27,7 @@ defmodule HTMLTestHelpersTest do
             {"section", [{"id", "content"}],
              [
                {"h1", [{"data-testid", "h1-id"}, {"class", "title"}], ["Title"]},
+               {"h2", [{"data-testid", "h2-id"}, {"class", "subtitle"}], ["\nSubtitle\n"]},
                {"p", [{"data-testid", "headline-1"}, {"class", "span-headline-1 first-span"}],
                 ["First paragraph"]},
                {"p", [{"data-testid", "headline-2"}, {"class", "span-headline-2"}],
@@ -41,6 +43,19 @@ defmodule HTMLTestHelpersTest do
   describe "assert_html_text" do
     test "with raw html, pass when text is found", %{raw_html: raw_html} do
       assert_html_text(raw_html, "h1-id", "Title")
+    end
+
+    test "with raw html contains new lines, pass when text is trimmed (default behaviour)", %{raw_html: raw_html} do
+      assert_html_text(raw_html, "h2-id", "Subtitle")
+    end
+
+    test "with raw html contains new lines, raise when text is not trimmed", %{raw_html: raw_html} do
+      assert_raise AssertionError,
+                   ~r/Value identified by data-testid\[h2-id\] is not as expected/,
+                   fn ->
+                    assert_html_text(raw_html, "h2-id", "Subtitle", trim: false)
+                   end
+
     end
 
     test "with raw html, raise when text is not found", %{raw_html: raw_html} do

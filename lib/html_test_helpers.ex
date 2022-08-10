@@ -100,17 +100,20 @@ defmodule HTMLTestHelpers do
   @type html_document :: [any()]
   @type html_raw :: String.t()
 
+  def assert_html_text(raw, data_test_id, expected_value, options \\ [trim: true])
+
   @spec assert_html_text(html(), String.t(), String.t()) :: html_document()
-  def assert_html_text(raw, data_test_id, expected_value) when is_binary(raw) do
+  def assert_html_text(raw, data_test_id, expected_value, options) when is_binary(raw) do
     {:ok, document} = Floki.parse_document(raw)
-    assert_html_text(document, data_test_id, expected_value)
+    assert_html_text(document, data_test_id, expected_value, options)
   end
 
-  def assert_html_text(html, data_test_id, expected_value) when is_list(html) do
+  def assert_html_text(html, data_test_id, expected_value, options) when is_list(html) do
     text_value =
       html
       |> Floki.find("[data-testid=#{data_test_id}]")
       |> Floki.text()
+      |> apply_options(options)
 
     text_expected_value = to_string(expected_value)
 
@@ -263,4 +266,9 @@ defmodule HTMLTestHelpers do
     length(expected_attribute_values) === length(attribute_values) &&
       expected_attribute_values -- attribute_values === []
   end
+
+  defp apply_options(text, options), do: Enum.reduce(options, text, &handle_options/2)
+
+  defp handle_options({:trim, true}, text), do: String.trim(text)
+  defp handle_options(_, text), do: text
 end
