@@ -23,7 +23,7 @@ defmodule HTMLTestHelpers.MixProject do
   defp deps do
     [
       # HTML
-      {:floki, "~> 0.32.1"},
+      {:floki, "~> 0.34"},
 
       # Linting
       {:credo, "~> 1.6", only: [:dev, :test], override: true},
